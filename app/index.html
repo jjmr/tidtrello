@@ -8,9 +8,15 @@
 <body>
     <h1>TID Trello</h1>
     <div class="cards" ng-controller="CardController">
-        <div class="card" ng-repeat="card in cards">
+        <select ng-model="selectedStatus">
+            <option value="TODO">TODO</option>
+            <option value="DOING">DOING</option>
+            <option value="DONE">DONE</option>
+        </select>
+        <div class="card" ng-repeat="card in cards | filter : { cardStatus: selectedStatus }">
             <img src="{{card.user | gravatar}}"></img>
             <p>Title: {{card.title | uppercase }}</p>
+            <p>Status: {{card.cardStatus}}</p>
             <p>User: {{card.user}}</p>
             <p>Description: {{card.description}}</p>
             <p>Date: {{card.date | date : 'MM/dd/yyyy @ h:mma'}}</p>
@@ -23,24 +29,30 @@
         
         angular.module('tidtrello').controller('CardController', 
             function CardController($scope) {
+
+                $scope.selectedStatus = "TODO";
+
                 $scope.cards = [
                     { 
                         title: 'Implement card controller',
                         user: 'davidg@tid.es',
                         description: 'A card controller needs to be implemented',
-                        date: new Date()
+                        date: new Date(),
+                        cardStatus: 'TODO'
                     },
                     { 
                         title: 'Gravatar filter bug',
                         user: 'jjmr@tid.es',
                         description: 'It doesnt work quite well',
-                        date: new Date()
+                        date: new Date(),
+                        cardStatus: 'DOING'
                     },
                     { 
                         title: 'Test documentation',
                         user: 'pjm@tid.es',
                         description: 'We need to write some tests!',
-                        date: new Date()
+                        date: new Date(),
+                        cardStatus: 'DOING'
                     }
                 ];
             });

@@ -9,6 +9,7 @@
     <h1>TID Trello</h1>
     <div class="cards">
         <div class="card" ng-controller="CardController">
+            <img src="{{user | gravatar}}"></img>
             <p>Title: {{title | uppercase }}</p>
             <p>User: {{user}}</p>
             <p>Description: {{description}}</p>
@@ -16,6 +17,7 @@
         </div>
     </div>
     <script src="js/lib/angular.js"></script>
+    <script src="js/lib/md5-min.js"></script>
     <script>
         angular.module('tidtrello', []);
         
@@ -26,6 +28,15 @@
                 $scope.description = 'A card controller needs to be implemented';
                 $scope.date = new Date();
             });
+
+        angular.module('tidtrello').filter('gravatar',
+            function() {
+                return function(input) {
+                    var md5 = input ? hex_md5(input) : '';
+                    return 'http://www.gravatar.com/avatar/' + md5;
+                };
+            });
+
     </script>
 </body>
 </html>

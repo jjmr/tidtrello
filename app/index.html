@@ -3,12 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>TID Trello</title>
+    <link rel="stylesheet" href="css/tidtrello.css" />
 </head>
 <body>
     <h1>TID Trello</h1>
+    <div class="cards">
+        <div class="card" ng-controller="CardController">
+            <p>Title: {{title}}</p>
+            <p>User: {{user}}</p>
+            <p>Description: {{description}}</p>
+        </div>
+    </div>
     <script src="js/lib/angular.js"></script>
     <script>
         angular.module('tidtrello', []);
+        
+        function CardController($scope) {
+            $scope.title = 'Implement card controller';
+            $scope.user = 'davidg@tid.es';
+            $scope.description = 'A card controller needs to be implemented';
+        }
     </script>
 </body>
 </html>

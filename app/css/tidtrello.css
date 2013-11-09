@@ -1,0 +1,92 @@
+body {
+    background-color: #aab7b7;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+h1 {
+    background-color: #2c3e50;
+    margin: 0px;
+    color: white;
+    border-bottom: 4px solid #34495e;
+    box-shadow: 0px 1px 4px rgba(0,0,0,0.4);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    padding: 10px;
+}
+
+.cards {
+    position: absolute;
+    top: 70px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.column {
+    width: 250px;
+    float: left;
+    background-color: #98a3a3;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.column h2 {
+    margin: 0px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+.card {
+    width: 230px;
+    background-color: #ecf0f1;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    box-shadow: 0px 1px 5px rgba(0,0,0,0.4);
+    margin-bottom: 10px;
+}
+
+.card .avatar {
+    float: right;
+    margin-top: -27px;
+    width: 40px;
+    border-radius: 5px;
+    border: 2px solid white;
+    box-shadow: 0px 1px 4px rgba(0,0,0,0.4);
+}
+
+.card h3 {
+    margin: 0px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.card.critical {
+    border-top: 5px solid #e74c3c;
+}
+
+.card.major {
+    border-top: 5px solid #e67e22;   
+}
+
+.card.minor {
+    border-top: 5px solid #f1c40f;
+}
+
+.card.trivial {
+    border-top: 5px solid #2ecc71;
+}
+
+.add_card {
+    text-align: center;
+    margin-top: 14px;
+    color: white;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+}

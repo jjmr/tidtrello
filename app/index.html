@@ -19,12 +19,13 @@
     <script>
         angular.module('tidtrello', []);
         
-        function CardController($scope) {
-            $scope.title = 'Implement card controller';
-            $scope.user = 'davidg@tid.es';
-            $scope.description = 'A card controller needs to be implemented';
-            $scope.date = new Date();
-        }
+        angular.module('tidtrello').controller('CardController', 
+            function CardController($scope) {
+                $scope.title = 'Implement card controller';
+                $scope.user = 'davidg@tid.es';
+                $scope.description = 'A card controller needs to be implemented';
+                $scope.date = new Date();
+            });
     </script>
 </body>
 </html>

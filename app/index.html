@@ -28,9 +28,13 @@
         angular.module('tidtrello', []);
         
         angular.module('tidtrello').controller('CardController', 
-            function CardController($scope) {
+            function CardController($location, $scope) {
 
                 $scope.selectedStatus = "TODO";
+
+                $scope.$watch('selectedStatus', function(value) {
+                    $location.path('/' + value);
+                });
 
                 $scope.cards = [
                     { 

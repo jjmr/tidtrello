@@ -7,13 +7,13 @@
 </head>
 <body>
     <h1>TID Trello</h1>
-    <div class="cards">
-        <div class="card" ng-controller="CardController">
-            <img src="{{user | gravatar}}"></img>
-            <p>Title: {{title | uppercase }}</p>
-            <p>User: {{user}}</p>
-            <p>Description: {{description}}</p>
-            <p>Date: {{date | date : 'MM/dd/yyyy @ h:mma'}}</p>
+    <div class="cards" ng-controller="CardController">
+        <div class="card" ng-repeat="card in cards">
+            <img src="{{card.user | gravatar}}"></img>
+            <p>Title: {{card.title | uppercase }}</p>
+            <p>User: {{card.user}}</p>
+            <p>Description: {{card.description}}</p>
+            <p>Date: {{card.date | date : 'MM/dd/yyyy @ h:mma'}}</p>
         </div>
     </div>
     <script src="js/lib/angular.js"></script>
@@ -23,10 +23,26 @@
         
         angular.module('tidtrello').controller('CardController', 
             function CardController($scope) {
-                $scope.title = 'Implement card controller';
-                $scope.user = 'davidg@tid.es';
-                $scope.description = 'A card controller needs to be implemented';
-                $scope.date = new Date();
+                $scope.cards = [
+                    { 
+                        title: 'Implement card controller',
+                        user: 'davidg@tid.es',
+                        description: 'A card controller needs to be implemented',
+                        date: new Date()
+                    },
+                    { 
+                        title: 'Gravatar filter bug',
+                        user: 'jjmr@tid.es',
+                        description: 'It doesnt work quite well',
+                        date: new Date()
+                    },
+                    { 
+                        title: 'Test documentation',
+                        user: 'pjm@tid.es',
+                        description: 'We need to write some tests!',
+                        date: new Date()
+                    }
+                ];
             });
 
         angular.module('tidtrello').filter('gravatar',

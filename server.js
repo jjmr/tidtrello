@@ -72,6 +72,17 @@ app.post('/cards', function(req, res) {
     res.end();
 });
 
+app.post('/cards/:id', function(req, res, next) {
+    var card = getCard(req.params.id);
+    if (card) {
+        cards.splice(cards.indexOf(card), 1, req.body);
+        res.write(JSON.stringify(req.body));
+        res.end()
+    } else {
+        next();
+    }
+});
+
 app.put('/cards/:id', function(req, res, next) {
     var card = getCard(req.params.id);
     if (card) {

@@ -5,6 +5,7 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static('app'));
+app.use('/slides', express.static('slides'));
 
 var cards = [
     { 
@@ -13,7 +14,8 @@ var cards = [
         description: 'Cards needs to be improved...some day, maybe', 
         cardStatus: 'TODO',
         severity: 'trivial',
-        user: 'davidg@tid.es'
+        user: 'davidg@tid.es',
+        date: new Date('2013-10-09')
     },
     {
         id: '2', 
@@ -21,7 +23,17 @@ var cards = [
         description: 'Very important bug CAUTION!!', 
         cardStatus: 'TODO',
         severity: 'critical',
-        user: 'jjmr@tid.es'
+        user: 'jjmr@tid.es',
+        date: new Date('2013-10-10')
+    },
+    {
+        id: '3',
+        title: 'Write some tests',
+        description: 'Some tests need to be written',
+        cardStatus: 'DOING',
+        severity: 'minor',
+        user: 'pjm@tid.es',
+        date: new Date('2013-10-13')
     }
 ];
 

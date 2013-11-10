@@ -28,7 +28,7 @@
         angular.module('tidtrello', []);
         
         angular.module('tidtrello').controller('CardController', 
-            function CardController($location, $scope) {
+            function CardController($http, $location, $scope) {
 
                 $scope.selectedStatus = "TODO";
 
@@ -36,29 +36,9 @@
                     $location.path('/' + value);
                 });
 
-                $scope.cards = [
-                    { 
-                        title: 'Implement card controller',
-                        user: 'davidg@tid.es',
-                        description: 'A card controller needs to be implemented',
-                        date: new Date(),
-                        cardStatus: 'TODO'
-                    },
-                    { 
-                        title: 'Gravatar filter bug',
-                        user: 'jjmr@tid.es',
-                        description: 'It doesnt work quite well',
-                        date: new Date(),
-                        cardStatus: 'DOING'
-                    },
-                    { 
-                        title: 'Test documentation',
-                        user: 'pjm@tid.es',
-                        description: 'We need to write some tests!',
-                        date: new Date(),
-                        cardStatus: 'DOING'
-                    }
-                ];
+                $http.get('/cards').success(function(data) {
+                    $scope.cards = data;
+                });
             });
 
         angular.module('tidtrello').filter('gravatar',

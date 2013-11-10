@@ -64,7 +64,7 @@ app.get('/cards/:id', function(req, res, next) {
 
 app.post('/cards', function(req, res) {
     cards.push(req.body);
-    res.write(req.body);
+    res.write(JSON.stringify(req.body));
     res.end();
 });
 

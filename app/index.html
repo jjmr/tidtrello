@@ -2,13 +2,29 @@
 <html lang="en" ng-app="tidtrello">
 <head>
     <meta charset="UTF-8">
-    <title>TID Trello</title>
+    <title>Curso angular</title>
+    <link rel="stylesheet" href="css/tidtrello.css" />
 </head>
 <body>
-    <h1>TID Trello</h1>
+    
+    <header>
+        <h1>Tid trello</h1>
+    </header>
+
+    <article ng-include="'html/cards.html'">
+    </article>
+
+    <footer>
+
+    </footer>
+    <script src="js/lib/md5-min.js"></script>
+    <script src="js/lib/jquery.js"></script>
     <script src="js/lib/angular.js"></script>
-    <script>
-        angular.module('tidtrello', []);
-    </script>
+    <script src="js/lib/angular-resource.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/services/cards.js"></script>
+    <script src="js/filters/gravatar.js"></script>
+    <script src="js/controllers/cards_controller.js"></script>
+    <script src="js/directives/card.js"></script>
 </body>
 </html>

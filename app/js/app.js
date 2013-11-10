@@ -1,0 +1,2 @@
+angular.module('tidtrello', ['ngResource']);
+

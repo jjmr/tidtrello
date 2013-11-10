@@ -37,6 +37,8 @@ var cards = [
     }
 ];
 
+var idCount = 3;
+
 function getCard(id) {
     var cardMatch; 
     cards.forEach(function(card) {
@@ -53,7 +55,7 @@ app.get('/cards', function(req, res) {
 });
 
 app.get('/cards/:id', function(req, res, next) {
-    var card = getIssue(req.params.id);
+    var card = getCard(req.params.id);
     if (card) {
         res.write(JSON.stringify(card));
         res.end();
@@ -63,9 +65,22 @@ app.get('/cards/:id', function(req, res, next) {
 });
 
 app.post('/cards', function(req, res) {
+    idCount = idCount + 1;
+    req.body.id = idCount;
     cards.push(req.body);
-    res.write(req.body);
+    res.write(JSON.stringify(req.body));
     res.end();
+});
+
+app.put('/cards/:id', function(req, res, next) {
+    var card = getCard(req.params.id);
+    if (card) {
+        cards.splice(cards.indexOf(card), 1, req.body);
+        res.write(JSON.stringify(req.body));
+        res.end()
+    } else {
+        next();
+    }
 });
 
 app.delete('/cards/:id', function(req, res, next) {

@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>AngularJS - Training</title>
+
+		<meta name="description" content="AngulaJS Course">
+		<meta name="author" content="Pablo Jiménez Mayor">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>AngularJS</h1>
+					<h3>A training course by:</h3>
+					<p>
+                        <small>
+                            <a href="mailto:davidg@tid.es">David García</a> / <a href="http://twitter.com/??">@??</a></br>
+                            <a href="mailto:jimmy.collazos@aurigae.com">Jimmy Collazos</a> / <a href="http://twitter.com/??">@??</a></br>
+                            <a href="mailto:jjmr@tid.es">Juan Jose Martín Rodríguez</a> / <a href="http://twitter.com/??">@??</a></br>
+                            <a href="mailto:pjm@tid.es">Pablo Jiménez</a> / <a href="http://twitter.com/pjmpjm">@pjmpjm</a></br>
+                        </small>
+					</p>
+				</section>
+
+				<section>
+                    <section>
+                        <h2>Introduction</h2>
+                        <p>
+                            AngularJS it's an open-source javascript framework, created by Google, that assists
+                            with running single-page applications.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Multi-page application</h2>
+                        <p>
+                            Multi-page web applications create their HTML by assembling and joining it with data
+                            on the server, and then shipping the finished pages up to the browser.
+                        </p>
+                        <img src="img/multi_page.png"></img>
+                    </section>
+                    <section>
+                        <h2>Single-page applications</h2>
+                        <p>
+                            In Single-page applications, HTML is assembled on the browser. The role of the server is
+                            just to serve the static resources for the templates and handle the data required by
+                            those templates.
+                        </p>
+                        <img src="img/single_page.png"></img>
+                    </section>
+                    <section>
+                        <h2>MVC in Angular</h2>
+                        <ul>
+                            <li>Views. Client side templates. HTML + angular directives</li>
+                            <li>Models. Plain javascript objects {}. (aka scopes)</li>
+                            <li>Controllers. Javascript functions that change the model (scope)</li>
+                            <li>Angular.js offers two way data-binding. view <-> model</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Other Angular.js features</h2>
+                        <ul>
+                            <li>Dependency injection. Just ask for your needs, Angular injects your dependencies.</li>
+                            <li>Directives (inspired in web components)</li>
+                            <li>HTTP, REST API consumption method</li>
+                            <li>Application URL routes</li>
+                            <li>Promises</li>
+                        </ul>   
+                    </section>
+
+					<!--<aside class="notes">-->
+						<!--Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).-->
+					<!--</aside>-->
+				</section>
+
+				<section>
+					<h2>Setting up an angular project</h2>
+                    <p>
+                        <a href="http://angularjs.org">http://angularjs.org</a>
+                    </p>
+					<pre><code data-trim>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot; ng-app=&quot;tidtrello&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;script src=&quot;angular.js&quot;&gt;&lt;/script&gt;
+        &lt;script&gt;
+            angular.module('tidtrello', []);
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+                    </code></pre>
+				</section>
+
+				<section>
+                    <h2>Writting up your first application</h2>
+					<pre><code data-trim>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot; ng-app=&quot;tidtrello&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div ng-controller='HelloController'&gt;
+            &lt;p&gt;{{greeting.text}}, World&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;script src=&quot;angular.js&quot;&gt;&lt;/script&gt;
+        &lt;script&gt;
+            angular.module('tidtrello', []);
+            function HelloController($scope) {
+                $scope.greeting = { text: 'Hello' };
+            }
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+                    </code></pre>
+				</section>
+
+				<section>
+					<h2>TID <a href="https://trello.com">Trello</a> exercise</h2>
+					<p>
+						Step 1: Make an angular app showing a basic trello card:
+					</p>
+                    <ul>
+                        <li>Title</li>
+                        <li>User name</li>
+                        <li>Card description</li>
+                    </ul>
+				</section>
+
+                <section>
+                    <section>
+                        <h2>Angular modules</h2>
+                        <p>
+                            angular.module function is used to create modules
+                            and to retrieve existing ones
+                        </p>
+                        <p>
+                            Create angular module passing name and dependency array
+                        </p>
+                        <pre><code>angular.module('tidtrello', []);</code></pre>
+                        <p>
+                            Passing just the name returns an already created module
+                        </p>
+                        <pre><code>angular.module('tidtrello');</code></pre>
+                    </section>
+                    <section>
+                        <h2>Creating a controller (the right way)</h2>
+                        <pre><code>
+angular.module('tidtrello').controller('HelloController',
+    function($scope) {
+        $scope.greeting = "Hello";
+    });
+                        </code><pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Controllers</h2>
+                        <p>
+                            A Controller is a JavaScript constructor function that is used to augment the Angular Scope.
+                        </p>
+                        <p>
+                            The ng-controller directive causes the instantiation of a new Controller object, using the
+                            Controller's constructor function
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Controllers (II)</h2>
+                        <p>
+                            Use Controllers to encapsulate the business logic needed for a single view.
+                        </p>
+                        <ul>
+                            <li>Setting up the initial state of the $scope object.</li>
+                            <li>Adding behavior to the $scope object.</li>
+                        </ul>
+                        <pre><code data-trim>
+function GreetingCtrl($scope) {
+    $scope.username = 'World';
+
+    $scope.sayHello = function() {
+        $scope.greeting = 'Hello ' + $scope.username + '!';
+    };
+}
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Controllers (III)</h2>
+                        <p>
+                            Do not use Controllers for:
+                        </p>
+                        <ul>
+                            <li>DOM manipulation. Use databinding or encapsulate your own presentation logic in
+                            directives</li>
+                            <li>Input formatting — Use angular form controls instead.</li>
+                            <li>Output filtering — Use angular filters instead.</li>
+                            <li>Sharing stateful or stateless code across controllers - Use angular services
+                                instead</li>
+                        </ul>
+                    </section>
+
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Expressions</h2>
+                        <p>
+                            Create hooks between templates, application logic, and data.
+                        </p>
+                        <ul>
+                            <li>Simple math (+, -, /, *, %)</li>
+                            <li>Comparisons (==, !=, >, <, >=, ⇐)</li>
+                            <li>Boolean logic (&&, ||, !) and bitwise operations (\^, &, |)</li>
+                            <li>Call functions, reference arrays and object notation ([ ], { }, .)</li>
+                        </ul>
+                        <p>Example:</p>
+                        <pre><code><div>{{recompute() / 10}}</div></code></pre>
+                    </section>
+                    <section>
+                        <h2>Angular Expressions vs. JS Expressions</h2>
+                        <p>
+
+                        </p>
+                        <ul>
+                            <li>Attribute evaluation: evaluation of all properties are against the scope, not the
+                                global 'window'.</li>
+                            <li>Forgiving: expression evaluation is forgiving to undefined and null. In {{a.b.c}}, if
+                                a is undefined, the expression shows nothing.</li>
+                            <li>No Control Flow Statements.</li>
+                            <li>Filters: you can pass result of expression evaluations through filter chains.</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Filters</h2>
+                    <p>
+                        Filters allow you to declare how to transform data for display to the user. Syntax:
+                    </p>
+                    <pre><code>{{ expression | filterName : parameter1 : ... parameterN }}</code></pre>
+                    <p>Example:</p>
+                    <pre><code>{{12.9 | currency}}</code></pre>
+                    <p>=> $12.9</p>
+                </section>
+
+                <section>
+                    <h2>TID <a href="https://trello.com">Trello</a> exercise</h2>
+                    <p>
+                        Step 2: Use angular filters to modify your TID trello card.
+                        <a href="http://docs.angularjs.org/api/ng">http://docs.angularjs.org/api/ng</a> -> Filters
+                    </p>
+                    <ul>
+                        <li>Title</li>
+                        <li>User name</li>
+                        <li>Card description</li>
+                        <li>Date</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Creating your own filters</h2>
+                    <pre><code>
+angular.module('tidtrello')
+    .filter('myfilter', function() {
+        var currencySymbol = '$';
+        return function(input) {
+            return input + currencySymbol;
+        };
+    });
+
+{{ 12 | myfilter }} -> 12$
+                    </pre></code>
+                </section>
+
+                <section>
+                    <h2>TID <a href="https://trello.com">Trello</a> exercise</h2>
+                    <p>
+                        Step 3: Create your own filter to display user gravatar.
+                    </p>
+                    <ul>
+                        <li>Gravatar image url is http://www.gravatar.com/avatar/emailmd5</li>
+                        <li>Use md5-min.js library. hex_md5(string)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Directives</h2>
+                    <p>
+                        Directives are markers on a DOM element (attribute, element, or CSS class) used to modify
+                        its behavior, by adding custom functionality.
+                    </p>
+                    <p>We have already use them!:</p>
+                    <ul>
+                        <li>ng-app</li>
+                        <li>ng-controller</li>
+                    </ul>
+                    <p>AngularJS comes with a large set of directives. Examples:</p>
+                    <ul>
+                        <li>ngHide / ngShow</li>
+                        <li>ngClick</li>
+                        <li>ngRepeat</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>TID <a href="https://trello.com">Trello</a> exercise</h2>
+                    <p>
+                        Step 4: Use angular directives to show a list of cards.
+                        <a href="http://docs.angularjs.org/api/ng">http://docs.angularjs.org/api/ng</a> -> Directives
+                    </p>
+                    <ul>
+                        <li>Title</li>
+                        <li>Status</li>
+                        <li>User name</li>
+                        <li>Card description</li>
+                        <li>Date</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>TID <a href="https://trello.com">Trello</a> exercise</h2>
+                    <p>
+                        Step 5: Filter list by status attribute. Use select/radio elements to choose status value.</br>
+                        <a href="http://docs.angularjs.org/api/ng">http://docs.angularjs.org/api/ng</a> -> Directives
+                    </p>
+                    <p>Tips:</p>
+                    <ul>
+                        <li><a href="http://docs.angularjs.org/api/ng.directive:ngModel">ng-model</a></li>
+                        <li><a href="http://docs.angularjs.org/api/ng.directive:ngRepeat">ng-repeat</a></li>
+                        <li><a href="http://docs.angularjs.org/api/ng.filter:filter">filter</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>How scopes work</h2>
+                        <p>How angular knows that something changed in the model so it needs to update the view?</p>
+                        <p>It uses dirty checking. After the controller is done, it checks what changed in the scope and updates de view</p>
+                        <img src="img/concepts-runtime.png"></img>
+
+                    </section>
+                    <section>
+                        <h2>$scope.$apply</h2>
+                        <p>Use
+                                (<a href="http://docs.angularjs.org/api/ng.$rootScope.Scope#methods_$apply">$apply</a>)
+                                to propagate any model changes through the system into the
+                                view from outside of the "Angular realm" (i.e., from browser DOM events, setTimeout,
+                                XHR or third party libraries).</p>
+
+                    </section>
+                    <section>
+                        <h2>$scope.$watch</h2>
+                        <p>
+                                (<a href="http://docs.angularjs.org/api/ng.$rootScope.Scope#methods_$watch">$watch</a>)
+                                to observe model mutations.</p>
+                        <pre><code>
+$scope.$watch('count', function(newValue, oldValue) {
+    if (newValue === 0) {
+        $scope.empty = true;
+    }
+});
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Scopes hierarchy</h2>
+                        <p>
+                            Scopes are arranged in hierarchical structure which mimic the DOM structure of the application.
+                        </p>
+                            <p>Hierarchies. An angular app has one
+                                <a href="http://docs.angularjs.org/api/ng.$rootScope">root scope</a>, but may have
+                                several child scopes. A scope (prototypically) inherits properties from its parent
+                                scope.</p>
+                        <img src="img/concepts-scope.png"></img>
+                    </section>
+                    <section>
+                        <h2>Scopes events</h2>
+                        <ul>
+                            <li>
+                                Event propagation. Scopes can propagate events in similar fashion to DOM events.
+                                The event can be
+                                <a href="http://docs.angularjs.org/api/ng.$rootScope.Scope#methods_$broadcast">
+                                    broadcasted</a> to the scope children or
+                                <a href="http://docs.angularjs.org/api/ng.$rootScope.Scope#methods_$emit">emitted</a>
+                                to scope parents.
+                            </li>
+                            <pre><code>
+$scope.$emit('itemdeleted', item);
+
+$scope.$broadcast('itemdeleted', item);
+
+$scope.$on('itemdeleted', function(e, item) {
+   
+});
+                            </code></pre>
+                        </ul>
+                    </section>
+                </section>
+    
+                <section>
+                    <section>
+                        <h2>Angular.js services</h2>
+                        <p>Angular.js offers a lot of <a href="http://docs.angularjs.org/api/">Services</a></p>
+                        <ul>
+                            <li>$location: Allows you to manage the URL of the page. Get current URL, change it, get parameters,...</li>
+                            <li>$http: Allows to perform HTTP requests</li>
+                            <li>$q: Service to create promises</li>
+                            <li>$rootScope: To access the root scope of the page</li>                            
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Dependency injection</h2>
+                        <p>
+                            Service are available in your controllers, filter, directives and other services, using dependency injection.
+                        </p>
+                        <p>
+                            Angular.js looks for the name of the parameters of your constructor functions and injects the service with the same name
+                        </p>
+                        <pre><code>
+angular.module('tidtrello').controller('MyController',
+    function($location, $scope) {
+
+    });
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Dependency injection and minifiers</h2>
+                        <p>
+                            Javascript minifiers change the name of the variables, so it will
+                            break Angular.js dependency injection based on parameter name. There are two possible solutions:
+                        </p>
+                        <pre><code>
+angular.module('tidtrello').controller('MyController',
+    ['$location', '$scope', function($location, $scope) {
+
+    }]);
+</code></pre>
+<pre><code>
+function MyController($location, $scope) {
+
+}
+
+MyController.$inject = ['$location', '$scope'];
+
+angular.module('tidtrello').controller(MyController);
+                        </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>TID <a href="https://trello.com">Trello</a> exercise</h2>
+                    <p>
+                        Step 6: Watch 'selectedStatus' model property and change browser's path location with it's value
+                    </p>
+                    <p>Tip: Use <a href="http://docs.angularjs.org/api/ng.$location">$location</a> service to handle
+                        browser's URL</a>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>TID <a href="https://trello.com">Trello</a> exercise</h2>
+                    <p>
+                        Step 7: Use $http service to get the cards from the server
+                    </p>
+                    <p>Cards endpoint '/cards'</p>
+                    </p>
+                </section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

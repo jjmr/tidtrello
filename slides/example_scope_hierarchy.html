@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="text" ng-controller="MyController">
+        <ul>
+            <li ng-repeat="item in items">
+                {{item}}
+            </li>
+        </ul>
+        {{text}}
+    </div>
+    <script src="js/angular.js"></script>
+    <script>
+        
+        angular.module('myapp', []);
+         
+        function MyController($scope) {
+            $scope.parentProperty = "ParentProperty";
+            $scope.items = [1, 2, 3, 4, 5];
+        }
+
+    </script>
+</body>
+</html>

@@ -367,6 +367,19 @@ angular.module('tidtrello')
                 <section>
                     <h2>TID <a href="https://trello.com">Trello</a> exercise</h2>
                     <p>
+                        Step 4b: Highlight selected card when you click on it
+                        <a href="http://docs.angularjs.org/api/ng">http://docs.angularjs.org/api/ng</a> -> Directives
+                    </p>
+                    <p>Tips:</p>
+                    <ul>
+                        <li><a href="http://docs.angularjs.org/api/ng.directive:ngClick">ng-click</a></li>
+                        <li><a href="http://docs.angularjs.org/api/ng.directive:ngClass">ng-class</a></li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>TID <a href="https://trello.com">Trello</a> exercise</h2>
+                    <p>
                         Step 5: Filter list by status attribute. Use select/radio elements to choose status value.</br>
                         <a href="http://docs.angularjs.org/api/ng">http://docs.angularjs.org/api/ng</a> -> Directives
                     </p>
@@ -509,6 +522,40 @@ angular.module('tidtrello').controller(MyController);
                         Step 7: Use $http service to get the cards from the server
                     </p>
                     <p>Cards endpoint '/cards'</p>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Creating your own <a href="http://docs.angularjs.org/guide/directive">directives</a></h2>
+                    <p>Use directive method of your module</p>
+                    <pre><code>
+angular.module('tidtrello').directive('myDirective',
+    function() {
+        return {
+            restrict: 'AEC',
+            template: '&lt;p&gt;My directive content&lt;/p&gt;',
+            // templateURL: '/html/mydirective.html',
+            link: function(scope, element, attrs) {
+                scope.$watch('width', function(value) {
+                    element.css('width', value);
+                });
+            }
+        };
+    });
+                    </code></pre>
+
+                    <pre><code>
+                        &lt;my-directive&gt;&lt;/my-directive&gt;
+                        &lt;div my-directive&gt;&lt;/div&gt;
+                        &lt;div data-my-directive&gt;&lt;/div&gt;
+                        &lt;div class=&quot;my-directive&quot;&gt;&lt;/div&gt;
+                    </code></pre>
+
+                </section>
+                <section>
+                    <h2>TID <a href="https://trello.com">Trello</a> exercise</h2>
+                    <p>
+                        Step 8: Create your own directive for the card element
                     </p>
                 </section>
 

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="text" ng-controller="MyController">
+        {{text}}
+    </div>
+    <script src="js/angular.js"></script>
+    <script>
+        
+        angular.module('myapp', []);
+         
+        function MyController($scope) {
+            $scope.text = "Click here";
+        }
+
+    </script>
+</body>
+</html>

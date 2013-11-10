@@ -8,7 +8,8 @@
 <body>
     <h1>TID Trello</h1>
     <div class="cards" ng-controller="CardController">
-        <div class="card" ng-repeat="card in cards">
+        <div class="card" ng-repeat="card in cards" 
+          ng-click="selectCard(card)" ng-class="{ selected: card.selected }">
             <img src="{{card.user | gravatar}}"></img>
             <p>Title: {{card.title | uppercase }}</p>
             <p>User: {{card.user}}</p>
@@ -43,6 +44,14 @@
                         date: new Date()
                     }
                 ];
+
+                $scope.selectCard = function(card) {
+                    if ($scope.selectedCard) {
+                        $scope.selectedCard.selected = false;
+                    }
+                    card.selected = true;
+                    $scope.selectedCard = card;
+                };
             });
 
         angular.module('tidtrello').filter('gravatar',

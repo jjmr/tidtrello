@@ -45,12 +45,13 @@
                     }
                 ];
 
+                var selectedCard;
                 $scope.selectCard = function(card) {
-                    if ($scope.selectedCard) {
-                        $scope.selectedCard.selected = false;
+                    if (selectedCard) {
+                        selectedCard.selected = false;
                     }
                     card.selected = true;
-                    $scope.selectedCard = card;
+                    selectedCard = card;
                 };
             });
 

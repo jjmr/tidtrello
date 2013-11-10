@@ -5,6 +5,7 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static('app'));
+app.use('/slides', express.static('slides'));
 
 var cards = [
     { 

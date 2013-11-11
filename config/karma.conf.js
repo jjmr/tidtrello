@@ -35,8 +35,12 @@ module.exports = function(config){
       suite: 'unit'
     },
 
+    // html2js
     preprocessors: {
       'app/html/*.html': ['ng-html2js']
+    },
+    ngHtml2JsPreprocessor: {
+      stripPrefix: 'app/'
     }
 
 })}

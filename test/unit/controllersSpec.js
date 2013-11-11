@@ -30,5 +30,26 @@ describe('controllers', function() {
         expect(scope.cards.length).toEqual(0);
       });
 
+      it('add card in scope.cards', function() {
+        var name = 'CardTest';
+        $httpBackend.flush();
+        scope.addCard({name:name});
+        expect(scope.cards[0]).toBeDefined();
+        expect(scope.cards[0].cardStatus).toEqual(name);
+        expect(scope.editingCard.cardStatus).toEqual(name);
+      });
+
+      it('save my card', function(){
+        var card;
+        $httpBackend.flush();
+        scope.addCard({name:'CardTest'});
+        card = scope.editingCard;
+        spyOn(card, '$save');
+        scope.saveCard(card);
+
+        expect(card.editing).toBeFalsy();
+        expect(card.$save).toHaveBeenCalled();
+      });
+
     });
 });

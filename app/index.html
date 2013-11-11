@@ -28,7 +28,7 @@
         
         angular.module('tidtrello').config(
             function($routeProvider) {
-                $routeProvider.when('/cards', {
+                $routeProvider.when('/cards/:status', {
                     templateUrl: 'cards.html',
                     controller: 'CardController'
                 });
@@ -39,7 +39,7 @@
                 });
 
                 $routeProvider.otherwise({
-                    redirectTo: '/cards'
+                    redirectTo: '/cards/'
                 });
             });
 
@@ -54,13 +54,17 @@
         });
 
         angular.module('tidtrello').controller('CardController', 
-            function CardController($http, $location, $scope) {
-
-                $scope.selectedStatus = "TODO";
+            function CardController($http, $location, $scope, $routeParams) {
 
                 $scope.$watch('selectedStatus', function(value) {
-                    //$location.path('/' + value);
+                    if (value) {
+                        $location.path('/cards/' + value);
+                    }
                 });
+
+                if ($routeParams.status) {
+                    $scope.selectedStatus = $routeParams.status;
+                }
 
                 $http.get('/cards').success(function(data) {
                     $scope.cards = data;

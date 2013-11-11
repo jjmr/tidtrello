@@ -1,0 +1,8 @@
+<div class="card">
+    <img src="{{card.user | gravatar}}"></img>
+    <p>Title: {{card.title | uppercase }}</p>
+    <p>Status: {{card.cardStatus}}</p>
+    <p>User: {{card.user}}</p>
+    <p>Description: {{card.description}}</p>
+    <p>Date: {{card.date | date : 'MM/dd/yyyy @ h:mma'}}</p>
+</div>

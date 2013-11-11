@@ -1,0 +1,9 @@
+<div class="cards">
+    <select ng-model="selectedStatus">
+        <option value="TODO">TODO</option>
+        <option value="DOING">DOING</option>
+        <option value="DONE">DONE</option>
+    </select>
+    <card ng-repeat="card in cards | filter : { cardStatus: selectedStatus }">
+    </card>
+</div>

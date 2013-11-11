@@ -6,23 +6,43 @@
     <link rel="stylesheet" href="css/tidtrello.css" />
 </head>
 <body>
-    <h1>TID Trello</h1>
-    <div class="cards" ng-controller="CardController">
-        <select ng-model="selectedStatus">
-            <option value="TODO">TODO</option>
-            <option value="DOING">DOING</option>
-            <option value="DONE">DONE</option>
-        </select>
-        <card ng-repeat="card in cards | filter : { cardStatus: selectedStatus }">
-        </card>
-    </div>
+    <header>
+        <h1>TID Trello</h1>
+        <nav class="navigation">
+            <ul>
+                <li><a href="#/cards">Cards</a></li>
+                <li><a href="#/user">User</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div ng-view></div>
+
     <script src="js/lib/jquery.js"></script>
     <script src="js/lib/jquery-ui.js"></script>    
     <script src="js/lib/angular.js"></script>
+    <script src="js/lib/angular-route.js"></script>
     <script src="js/lib/md5-min.js"></script>
     <script>
-        angular.module('tidtrello', []);
+        angular.module('tidtrello', ['ngRoute']);
         
+        angular.module('tidtrello').config(
+            function($routeProvider) {
+                $routeProvider.when('/cards', {
+                    templateUrl: 'cards.html',
+                    controller: 'CardController'
+                });
+
+                $routeProvider.when('/user', {
+                    templateUrl: 'user.html',
+                    controller: 'UserController'
+                });
+
+                $routeProvider.otherwise({
+                    redirectTo: '/cards'
+                });
+            });
+
         angular.module('tidtrello').directive('card', function() {
             return {
                 restrict: 'E',
@@ -39,12 +59,17 @@
                 $scope.selectedStatus = "TODO";
 
                 $scope.$watch('selectedStatus', function(value) {
-                    $location.path('/' + value);
+                    //$location.path('/' + value);
                 });
 
                 $http.get('/cards').success(function(data) {
                     $scope.cards = data;
                 });
+            });
+
+        angular.module('tidtrello').controller('UserController',
+            function ($scope) {
+                $scope.loggedUser = "davidg@tid.es";
             });
 
         angular.module('tidtrello').filter('gravatar',

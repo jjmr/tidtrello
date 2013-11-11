@@ -6,8 +6,4 @@ describe('controllers', function() {
     beforeEach(function(){
         module('tidtrello');
     });
-    describe('My module is defined', function(){
-        var module = angular.module('tidtrello');
-        expect(module).toBeDefined();
-    });
 });

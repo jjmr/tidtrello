@@ -559,8 +559,107 @@ angular.module('tidtrello').directive('myDirective',
                     </p>
                 </section>
 
-			</div>
+                <section>
+                    <h2>PRO TIP: Having multiple html files</h2>
+                    <p>You don't have to put all your html in index.html. You can
+                        use ng-include directive to include other html files</p>
+                    <pre><code>
+    &lt;div ng-include=&quot;cards.html&quot;&gt;&lt;/div&gt;
+                    </code></pre>
+                </section>
 
+                <section>
+                    <section>
+                        <h2>ngRoute</h2>
+                        <p>From version 1.2.0 on, ngRoute is no longer in the default angular distribution</p>
+                        <p>You need to <a href="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular-route.js">download</a> and include it in your html</p>
+                        <pre><code>
+        &lt;script src=&quot;js/lib/angular-route.js&quot;&gt;&lt;/script&gt;
+                        </code></pre>
+                        <p>And set the module dependecy</p>
+                        <pre><code>
+    angular.module('tidtrello', ['ngRoute']);
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>ngRoute (II)</h2>
+                        <p>
+                            Put every view in a different html file. For example cards.html and user.html</p>
+                         <p> Left in index.html
+                            the common parts (headers, footers, etc...)
+                        </p>
+                        <p>
+                            Put a container element in index.html where the views will be inserted with a ng-view directive.
+                        </p>
+                        <pre><code>
+&lt;div ng-view&gt;&lt;/div&gt;
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>ngRoute (III)</h2>
+                        <p>Configure your routes</p>
+                        <pre><code>
+angular.module('tidtrello').config(
+    ['$routeProvider', function($routeProvider) {
+
+        $routeProvider.when('/cards', {
+            templateUrl: 'html/cards.html',
+            controller: 'CardsController'
+        });
+
+        $routeProvider.when('/user', {
+            templateUrl: 'html/user.html',
+            controller: 'UserController' 
+        });
+
+        $routeProvider.otherwise({
+            redirectTo: '/cards'
+        });
+    }]);
+                        </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>TID <a href="https://trello.com">Trello</a> exercise</h2>
+                    <p>
+                        Step 9: Use ngRoute to have 2 routes; one for cards and another
+                        for user profile
+                    </p>
+                </section>
+
+                <section>
+                    <h2>$routeParams</h2>
+                    <p>You can set params in the route</p>
+                    <pre><code>
+        $routeProvider.when('/cards/:status', {
+            templateUrl: 'html/cards.html',
+            controller: 'CardsController'
+        });
+                    </code></pre>
+                    <p>Then you can get those params injecting $routeParams in your controller</p>
+                    <pre><code>
+angular.module('tidtrello').controller('CardsController',
+    ['$routeParams, $scope', function($routeParams, $scope) {
+        $scope.status = $routeParams.status;
+    });
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>TID <a href="https://trello.com">Trello</a> exercise</h2>
+                    <p>
+                        Step 10: Implement this routes:
+                    </p>
+                    <ul>
+                        <li>#/cards/TODO</li>
+                        <li>#/cards/DONE</li>
+                        <li>#/cards/DOING</li>
+                    </ul>
+                </section>
+
+			</div>
 		</div>
 
 		<script src="lib/js/head.min.js"></script>

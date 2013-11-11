@@ -536,9 +536,7 @@ angular.module('tidtrello').directive('myDirective',
             template: '&lt;p&gt;My directive content&lt;/p&gt;',
             // templateURL: '/html/mydirective.html',
             link: function(scope, element, attrs) {
-                scope.$watch('width', function(value) {
-                    element.css('width', value);
-                });
+
             }
         };
     });
@@ -555,8 +553,15 @@ angular.module('tidtrello').directive('myDirective',
                 <section>
                     <h2>TID <a href="https://trello.com">Trello</a> exercise</h2>
                     <p>
-                        Step 8: Create your own directive for the card element
+                        Step 8: Create your own directive for the card element so it can be dragged                       
                     </p>
+                    <ul>
+                        <li>Tips:</li>
+                        <li>Include jquery.js jquery-ui.js</li>
+                        <li>Use jquery-ui draggable method</li>
+                        <pre><code>                        
+element.draggable();
+                        </code></pre>
                 </section>
 
                 <section>

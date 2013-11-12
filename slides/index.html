@@ -91,7 +91,7 @@
                             <li>HTTP, REST API consumption method</li>
                             <li>Application URL routes</li>
                             <li>Promises</li>
-                        </ul>   
+                        </ul>
                     </section>
 
 					<!--<aside class="notes">-->
@@ -376,7 +376,7 @@ angular.module('tidtrello')
                         <li><a href="http://docs.angularjs.org/api/ng.directive:ngClass">ng-class</a></li>
                     </ul>
                 </section>
-                
+
                 <section>
                     <h2>TID <a href="https://trello.com">Trello</a> exercise</h2>
                     <p>
@@ -449,13 +449,13 @@ $scope.$emit('itemdeleted', item);
 $scope.$broadcast('itemdeleted', item);
 
 $scope.$on('itemdeleted', function(e, item) {
-   
+
 });
                             </code></pre>
                         </ul>
                     </section>
                 </section>
-    
+
                 <section>
                     <section>
                         <h2>Angular.js services</h2>
@@ -464,7 +464,7 @@ $scope.$on('itemdeleted', function(e, item) {
                             <li>$location: Allows you to manage the URL of the page. Get current URL, change it, get parameters,...</li>
                             <li>$http: Allows to perform HTTP requests</li>
                             <li>$q: Service to create promises</li>
-                            <li>$rootScope: To access the root scope of the page</li>                            
+                            <li>$rootScope: To access the root scope of the page</li>
                         </ul>
                     </section>
                     <section>
@@ -553,13 +553,13 @@ angular.module('tidtrello').directive('myDirective',
                 <section>
                     <h2>TID <a href="https://trello.com">Trello</a> exercise</h2>
                     <p>
-                        Step 8: Create your own directive for the card element so it can be dragged                       
+                        Step 8: Create your own directive for the card element so it can be dragged
                     </p>
                     <ul>
                         <li>Tips:</li>
                         <li>Include jquery.js jquery-ui.js</li>
                         <li>Use jquery-ui draggable method</li>
-                        <pre><code>                        
+                        <pre><code>
 element.draggable();
                         </code></pre>
                 </section>
@@ -615,7 +615,7 @@ angular.module('tidtrello').config(
 
         $routeProvider.when('/user', {
             templateUrl: 'html/user.html',
-            controller: 'UserController' 
+            controller: 'UserController'
         });
 
         $routeProvider.otherwise({
@@ -662,6 +662,60 @@ angular.module('tidtrello').controller('CardsController',
                         <li>#/cards/DONE</li>
                         <li>#/cards/DOING</li>
                     </ul>
+                </section>
+
+                </section>
+                    <h2> <a href="http://karma-runner.github.io/0.10/index.html">Karma</a> - Add unit and E2E testing </h2>
+                    <ul>
+                        <li>
+                            Test on Real Devices <br/>
+                            <i>Test your code on real browsers and real devices such as phones, tablets or on a headless PhantomJS instance</i>
+                        </li>
+                        <li>
+                            Remote Control<br/>
+                            <i>Control the whole workflow from the command line or your IDE - just save a file and Karma will run all the tests.</i>
+                        </li>
+                        <li>
+                            Testing Framework Agnostic<br/>
+                            <i>Describe your tests with <a href="http://pivotal.github.com/jasmine/">Jasmine</a>,
+                        <a href="http://visionmedia.github.com/mocha/">Mocha</a>,
+                        <a href="http://qunitjs.com/">QUnit</a>, or write a simple adapter for any framework you like.</i>
+                        </li>
+                        <pre><code>
+$ npm install
+$ git fetch && git checkout final
+                        </code></pre>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Config file</h2>
+                    <pre><code>
+
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>Unit test :: Controller</h2>
+                    <pre><code>
+
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>Unit test :: Filter</h2>
+                    <pre><code>
+
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>Unit test :: Directive</h2>
+                    <pre><code>
+
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>E2E test :: Scenario</h2>
+                    <pre><code>
+
+                    </code></pre>
                 </section>
 
 			</div>

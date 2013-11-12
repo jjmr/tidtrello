@@ -694,27 +694,79 @@ $ git fetch && git checkout final
                     </code></pre>
                 </section>
                 <section>
+                    <h2>Unit test :: Run my module</h2>
+                    <pre><code>
+beforeEach(function(){
+    module('tidtrello');
+});
+                    </code></pre>
+                </section>
+                <section>
                     <h2>Unit test :: Controller</h2>
                     <pre><code>
-
+var scope, ctrl, CardsInstance;
+beforeEach(inject(function($rootScope, $controller, Cards) {
+    scope = $rootScope.$new();
+    CardsInstance = Cards;
+    ctrl = $controller('CardsController', {$scope: scope, Cards: Cards});
+}));
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>Unit test :: $http mock</h2>
+                    <pre><code>
+beforeEach(inject(function(_$httpBackend_) {
+    $httpBackend = _$httpBackend_;
+    $httpBackend.expectGET('/cards').
+        respond([{title:'mock'}]);
+}));
+it('my tests', function() {
+    $httpBackend.flush();
+    // add your code
+});
                     </code></pre>
                 </section>
                 <section>
                     <h2>Unit test :: Filter</h2>
                     <pre><code>
-
+var gravatar;
+beforeEach(inject(function(gravatarFilter) {
+    gravatar = gravatarFilter;
+}));
                     </code></pre>
                 </section>
                 <section>
                     <h2>Unit test :: Directive</h2>
                     <pre><code>
-
+var $scope, $compile;
+beforeEach(module('html/card.html'));
+beforeEach(inject(function (_$rootScope_, _$compile_) {
+        $scope = _$rootScope_;
+        $compile = _$compile_;
+    }));
+//......
+var compileDirective = function (markup, scope) {
+    var el = $compile(markup)(scope);
+    scope.$digest();
+    return el;
+};
+//......
+it('toggle class when card.dragging change', function(){
+    var element;
+    $scope.card = {'dragging' : true};
+    element = compileDirective('<card></card>', $scope);
+});
                     </code></pre>
                 </section>
                 <section>
                     <h2>E2E test :: Scenario</h2>
+                    <p>
+                        <a href="http://docs.angularjs.org/guide/dev_guide.e2e-testing">dev_guide.e2e-testing</a>
+                    </p>
                     <pre><code>
-
+beforeEach(function() {
+    browser().navigateTo('index.html');
+});
                     </code></pre>
                 </section>
 

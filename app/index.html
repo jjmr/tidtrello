@@ -14,7 +14,7 @@
             <option value="DONE">DONE</option>
         </select>
         <div class="card" ng-repeat="card in cards | filter : { cardStatus: selectedStatus }">
-            <img src="{{card.user | gravatar}}"></img>
+            <img ng-src="{{card.user | gravatar}}"/>
             <p>Title: {{card.title | uppercase }}</p>
             <p>Status: {{card.cardStatus}}</p>
             <p>User: {{card.user}}</p>

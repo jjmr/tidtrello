@@ -9,7 +9,7 @@
     <h1>TID Trello</h1>
     <div class="cards">
         <div class="card" ng-controller="CardController">
-            <img src="{{user | gravatar}}"></img>
+            <img src="{{user | gravatar}}"/>
             <p>Title: {{title | uppercase }}</p>
             <p>User: {{user}}</p>
             <p>Description: {{description}}</p>
@@ -24,7 +24,7 @@
         angular.module('tidtrello').controller('CardController', 
             function CardController($scope) {
                 $scope.title = 'Implement card controller';
-                $scope.user = 'davidg@tid.es';
+                $scope.user = 'pjm@tid.es';
                 $scope.description = 'A card controller needs to be implemented';
                 $scope.date = new Date();
             });

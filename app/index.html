@@ -10,7 +10,7 @@
     <div class="cards" ng-controller="CardController">
         <div class="card" ng-repeat="card in cards" 
           ng-click="selectCard(card)" ng-class="{ selected: card.selected }">
-            <img src="{{card.user | gravatar}}"></img>
+            <img ng-src="{{card.user | gravatar}}"/>
             <p>Title: {{card.title | uppercase }}</p>
             <p>User: {{card.user}}</p>
             <p>Description: {{card.description}}</p>

@@ -41,10 +41,11 @@
 					<h3>A training course by:</h3>
 					<p>
                         <small>
-                            <a href="mailto:davidg@tid.es">David García</a> / <a href="http://twitter.com/??">@??</a></br>
-                            <a href="mailto:jimmy.collazos@aurigae.com">Jimmy Collazos</a> / <a href="http://twitter.com/??">@??</a></br>
-                            <a href="mailto:jjmr@tid.es">Juan Jose Martín Rodríguez</a> / <a href="http://twitter.com/??">@??</a></br>
-                            <a href="mailto:pjm@tid.es">Pablo Jiménez</a> / <a href="http://twitter.com/pjmpjm">@pjmpjm</a></br>
+                            <a href="mailto:davidg@tid.es">David García</a> / <a href="http://twitter.com/??">@??</a><br/>
+                            <a href="mailto:jimmy.collazos@aurigae.com">Jimmy Collazos</a> / <a href="https://twitter.com/??">@??</a><br/>
+                            <a href="mailto:jjmr@tid.es">Juan Jose Martín Rodríguez</a> / <a href="https://twitter.com/juanjomr">@juanjomr</a><br/>
+                            <a href="mailto:pjm@tid.es">Pablo Jiménez</a> / <a href="https://twitter.com/pjmpjm">@pjmpjm</a><br/>
+
                         </small>
 					</p>
 				</section>
@@ -63,7 +64,7 @@
                             Multi-page web applications create their HTML by assembling and joining it with data
                             on the server, and then shipping the finished pages up to the browser.
                         </p>
-                        <img src="img/multi_page.png"></img>
+                        <img src="img/multi_page.png"/>
                     </section>
                     <section>
                         <h2>Single-page applications</h2>
@@ -72,7 +73,7 @@
                             just to serve the static resources for the templates and handle the data required by
                             those templates.
                         </p>
-                        <img src="img/single_page.png"></img>
+                        <img src="img/single_page.png"/>
                     </section>
                     <section>
                         <h2>MVC in Angular</h2>
@@ -113,7 +114,7 @@ npm install
                     <p>Run the server</p>
                     <pre><code>
 node server.js
-                    </pre></code>
+                    </code></pre>
                     <p>Put your code inside app folder</p>
                 </section>
 
@@ -197,7 +198,7 @@ angular.module('tidtrello').controller('HelloController',
     function($scope) {
         $scope.greeting = "Hello";
     });
-                        </code><pre>
+                        </code></pre>
                     </section>
                 </section>
 
@@ -261,7 +262,7 @@ function GreetingCtrl($scope) {
                             <li>Call functions, reference arrays and object notation ([ ], { }, .)</li>
                         </ul>
                         <p>Example:</p>
-                        <pre><code><div>{{recompute() / 10}}</div></code></pre>
+                        <pre><code>&lt;div&gt;{{recompute() / 10}}&lt;/div&gt;</code></pre>
                     </section>
                     <section>
                         <h2>Angular Expressions vs. JS Expressions</h2>
@@ -316,7 +317,7 @@ angular.module('tidtrello')
     });
 
 {{ 12 | myfilter }} -> 12$
-                    </pre></code>
+                    </code></pre>
                 </section>
 
                 <section>
@@ -380,7 +381,7 @@ angular.module('tidtrello')
                 <section>
                     <h2>TID <a href="https://trello.com">Trello</a> exercise</h2>
                     <p>
-                        Step 5: Filter list by status attribute. Use select/radio elements to choose status value.</br>
+                        Step 5: Filter list by status attribute. Use select/radio elements to choose status value.<br/>
                         <a href="http://docs.angularjs.org/api/ng">http://docs.angularjs.org/api/ng</a> -> Directives
                     </p>
                     <p>Tips:</p>
@@ -395,8 +396,8 @@ angular.module('tidtrello')
                     <section>
                         <h2>How scopes work</h2>
                         <p>How angular knows that something changed in the model so it needs to update the view?</p>
-                        <p>It uses dirty checking. After the controller is done, it checks what changed in the scope and updates de view</p>
-                        <img src="img/concepts-runtime.png"></img>
+                        <p>It uses dirty checking. After the controller is done, it checks what changed in the scope and updates the view</p>
+                        <img src="img/concepts-runtime.png"/>
 
                     </section>
                     <section>
@@ -430,7 +431,7 @@ $scope.$watch('count', function(newValue, oldValue) {
                                 <a href="http://docs.angularjs.org/api/ng.$rootScope">root scope</a>, but may have
                                 several child scopes. A scope (prototypically) inherits properties from its parent
                                 scope.</p>
-                        <img src="img/concepts-scope.png"></img>
+                        <img src="img/concepts-scope.png"/>
                     </section>
                     <section>
                         <h2>Scopes events</h2>
@@ -443,7 +444,8 @@ $scope.$watch('count', function(newValue, oldValue) {
                                 <a href="http://docs.angularjs.org/api/ng.$rootScope.Scope#methods_$emit">emitted</a>
                                 to scope parents.
                             </li>
-                            <pre><code>
+                        </ul>
+                        <pre><code>
 $scope.$emit('itemdeleted', item);
 
 $scope.$broadcast('itemdeleted', item);
@@ -451,8 +453,8 @@ $scope.$broadcast('itemdeleted', item);
 $scope.$on('itemdeleted', function(e, item) {
    
 });
-                            </code></pre>
-                        </ul>
+                        </code></pre>
+
                     </section>
                 </section>
     
@@ -512,7 +514,7 @@ angular.module('tidtrello').controller(MyController);
                         Step 6: Watch 'selectedStatus' model property and change browser's path location with it's value
                     </p>
                     <p>Tip: Use <a href="http://docs.angularjs.org/api/ng.$location">$location</a> service to handle
-                        browser's URL</a>
+                        browser's URL
                     </p>
                 </section>
 
@@ -522,7 +524,6 @@ angular.module('tidtrello').controller(MyController);
                         Step 7: Use $http service to get the cards from the server
                     </p>
                     <p>Cards endpoint '/cards'</p>
-                    </p>
                 </section>
 
                 <section>
@@ -559,9 +560,10 @@ angular.module('tidtrello').directive('myDirective',
                         <li>Tips:</li>
                         <li>Include jquery.js jquery-ui.js</li>
                         <li>Use jquery-ui draggable method</li>
-                        <pre><code>                        
+                    </ul>
+                    <pre><code>
 element.draggable();
-                        </code></pre>
+                    </code></pre>
                 </section>
 
                 <section>

@@ -62,7 +62,7 @@
                     //$location.path('/' + value);
                 });
 
-                $http.get('/cards').success(function(data) {
+                $http.get('/api/cards').success(function(data) {
                     $scope.cards = data;
                 });
             });

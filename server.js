@@ -49,12 +49,12 @@ function getCard(id) {
     return cardMatch;
 }
 
-app.get('/cards', function(req, res) {
+app.get('/api/cards', function(req, res) {
     res.write(JSON.stringify(cards));
     res.end();
 });
 
-app.get('/cards/:id', function(req, res, next) {
+app.get('/api/cards/:id', function(req, res, next) {
     var card = getCard(req.params.id);
     if (card) {
         res.write(JSON.stringify(card));
@@ -64,7 +64,7 @@ app.get('/cards/:id', function(req, res, next) {
     }
 });
 
-app.post('/cards', function(req, res) {
+app.post('/api/cards', function(req, res) {
     idCount = idCount + 1;
     req.body.id = idCount;
     cards.push(req.body);
@@ -72,7 +72,7 @@ app.post('/cards', function(req, res) {
     res.end();
 });
 
-app.post('/cards/:id', function(req, res, next) {
+app.post('/api/cards/:id', function(req, res, next) {
     var card = getCard(req.params.id);
     if (card) {
         cards.splice(cards.indexOf(card), 1, req.body);
@@ -83,7 +83,7 @@ app.post('/cards/:id', function(req, res, next) {
     }
 });
 
-app.put('/cards/:id', function(req, res, next) {
+app.put('/api/cards/:id', function(req, res, next) {
     var card = getCard(req.params.id);
     if (card) {
         cards.splice(cards.indexOf(card), 1, req.body);
@@ -94,7 +94,7 @@ app.put('/cards/:id', function(req, res, next) {
     }
 });
 
-app.delete('/cards/:id', function(req, res, next) {
+app.delete('/api/cards/:id', function(req, res, next) {
     var card = getCard(req.params.id);
     if (card) {
         cards.splice(cards.indexOf(card), 1);

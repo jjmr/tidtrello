@@ -91,7 +91,7 @@
                             <li>HTTP, REST API consumption method</li>
                             <li>Application URL routes</li>
                             <li>Promises</li>
-                        </ul>   
+                        </ul>
                     </section>
 
 					<!--<aside class="notes">-->
@@ -376,7 +376,7 @@ angular.module('tidtrello')
                         <li><a href="http://docs.angularjs.org/api/ng.directive:ngClass">ng-class</a></li>
                     </ul>
                 </section>
-                
+
                 <section>
                     <h2>TID <a href="https://trello.com">Trello</a> exercise</h2>
                     <p>
@@ -449,13 +449,13 @@ $scope.$emit('itemdeleted', item);
 $scope.$broadcast('itemdeleted', item);
 
 $scope.$on('itemdeleted', function(e, item) {
-   
+
 });
                             </code></pre>
                         </ul>
                     </section>
                 </section>
-    
+
                 <section>
                     <section>
                         <h2>Angular.js services</h2>
@@ -464,7 +464,7 @@ $scope.$on('itemdeleted', function(e, item) {
                             <li>$location: Allows you to manage the URL of the page. Get current URL, change it, get parameters,...</li>
                             <li>$http: Allows to perform HTTP requests</li>
                             <li>$q: Service to create promises</li>
-                            <li>$rootScope: To access the root scope of the page</li>                            
+                            <li>$rootScope: To access the root scope of the page</li>
                         </ul>
                     </section>
                     <section>
@@ -536,9 +536,7 @@ angular.module('tidtrello').directive('myDirective',
             template: '&lt;p&gt;My directive content&lt;/p&gt;',
             // templateURL: '/html/mydirective.html',
             link: function(scope, element, attrs) {
-                scope.$watch('width', function(value) {
-                    element.css('width', value);
-                });
+
             }
         };
     });
@@ -555,12 +553,268 @@ angular.module('tidtrello').directive('myDirective',
                 <section>
                     <h2>TID <a href="https://trello.com">Trello</a> exercise</h2>
                     <p>
-                        Step 8: Create your own directive for the card element
+                        Step 8: Create your own directive for the card element so it can be dragged
+                    </p>
+                    <ul>
+                        <li>Tips:</li>
+                        <li>Include jquery.js jquery-ui.js</li>
+                        <li>Use jquery-ui draggable method</li>
+                        <pre><code>
+element.draggable();
+                        </code></pre>
+                </section>
+
+                <section>
+                    <h2>PRO TIP: Having multiple html files</h2>
+                    <p>You don't have to put all your html in index.html. You can
+                        use ng-include directive to include other html files</p>
+                    <pre><code>
+    &lt;div ng-include=&quot;cards.html&quot;&gt;&lt;/div&gt;
+                    </code></pre>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>ngRoute</h2>
+                        <p>From version 1.2.0 on, ngRoute is no longer in the default angular distribution</p>
+                        <p>You need to <a href="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular-route.js">download</a> and include it in your html</p>
+                        <pre><code>
+        &lt;script src=&quot;js/lib/angular-route.js&quot;&gt;&lt;/script&gt;
+                        </code></pre>
+                        <p>And set the module dependecy</p>
+                        <pre><code>
+    angular.module('tidtrello', ['ngRoute']);
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>ngRoute (II)</h2>
+                        <p>
+                            Put every view in a different html file. For example cards.html and user.html</p>
+                         <p> Left in index.html
+                            the common parts (headers, footers, etc...)
+                        </p>
+                        <p>
+                            Put a container element in index.html where the views will be inserted with a ng-view directive.
+                        </p>
+                        <pre><code>
+&lt;div ng-view&gt;&lt;/div&gt;
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>ngRoute (III)</h2>
+                        <p>Configure your routes</p>
+                        <pre><code>
+angular.module('tidtrello').config(
+    ['$routeProvider', function($routeProvider) {
+
+        $routeProvider.when('/cards', {
+            templateUrl: 'html/cards.html',
+            controller: 'CardsController'
+        });
+
+        $routeProvider.when('/user', {
+            templateUrl: 'html/user.html',
+            controller: 'UserController'
+        });
+
+        $routeProvider.otherwise({
+            redirectTo: '/cards'
+        });
+    }]);
+                        </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>TID <a href="https://trello.com">Trello</a> exercise</h2>
+                    <p>
+                        Step 9: Use ngRoute to have 2 routes; one for cards and another
+                        for user profile
                     </p>
                 </section>
 
-			</div>
+                <section>
+                    <h2>$routeParams</h2>
+                    <p>You can set params in the route</p>
+                    <pre><code>
+        $routeProvider.when('/cards/:status', {
+            templateUrl: 'html/cards.html',
+            controller: 'CardsController'
+        });
+                    </code></pre>
+                    <p>Then you can get those params injecting $routeParams in your controller</p>
+                    <pre><code>
+angular.module('tidtrello').controller('CardsController',
+    ['$routeParams, $scope', function($routeParams, $scope) {
+        $scope.status = $routeParams.status;
+    });
+                    </code></pre>
+                </section>
 
+                <section>
+                    <h2>TID <a href="https://trello.com">Trello</a> exercise</h2>
+                    <p>
+                        Step 10: Implement this routes:
+                    </p>
+                    <ul>
+                        <li>#/cards/TODO</li>
+                        <li>#/cards/DONE</li>
+                        <li>#/cards/DOING</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2> <a href="http://karma-runner.github.io/0.10/index.html">Karma</a> - Add unit and E2E testing </h2>
+                    <ul>
+                        <li>
+                            Test on Real Devices <br/>
+                            <i>Test your code on real browsers and real devices such as phones, tablets or on a headless PhantomJS instance</i>
+                        </li>
+                        <li>
+                            Remote Control<br/>
+                            <i>Control the whole workflow from the command line or your IDE - just save a file and Karma will run all the tests.</i>
+                        </li>
+                        <li>
+                            Testing Framework Agnostic<br/>
+                            <i>Describe your tests with <a href="http://pivotal.github.com/jasmine/">Jasmine</a>,
+                        <a href="http://visionmedia.github.com/mocha/">Mocha</a>,
+                        <a href="http://qunitjs.com/">QUnit</a>, or write a simple adapter for any framework you like.</i>
+                        </li>
+                        <pre><code>
+$ npm install
+$ git fetch && git checkout final
+                        </code></pre>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Config file</h2>
+                    <pre><code>
+module.exports = function(config){
+    config.set({
+    basePath : '../',
+
+    files : [
+      'app/js/lib/angular.js',
+      'app/js/lib/angular-*.js',
+      'test/lib/angular/angular-mocks.js',
+      'app/js/**/*.js',
+      'test/unit/**/*.js'
+    ],
+
+    exclude : [
+      'app/lib/angular/angular-loader.js',
+      'app/lib/angular/*.min.js'
+    ],
+
+    autoWatch : true,
+
+    frameworks: ['jasmine'],
+
+    browsers : ['Chrome'],
+
+    plugins : [
+            'karma-junit-reporter',
+            'karma-chrome-launcher',
+            'karma-firefox-launcher',
+            'karma-jasmine',
+            'karma-ng-html2js-preprocessor'
+            ],
+
+    junitReporter : {
+      outputFile: 'test_out/unit.xml',
+      suite: 'unit'
+    },
+
+    // html2js
+    preprocessors: {
+      'app/html/*.html': ['ng-html2js']
+    },
+    ngHtml2JsPreprocessor: {
+      stripPrefix: 'app/'
+    }
+
+})}
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>Unit test :: Run my module</h2>
+                    <pre><code>
+beforeEach(function(){
+    module('tidtrello');
+});
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>Unit test :: Controller</h2>
+                    <pre><code>
+var scope, ctrl, CardsInstance;
+beforeEach(inject(function($rootScope, $controller, Cards) {
+    scope = $rootScope.$new();
+    CardsInstance = Cards;
+    ctrl = $controller('CardsController', {$scope: scope, Cards: Cards});
+}));
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>Unit test :: $http mock</h2>
+                    <pre><code>
+beforeEach(inject(function(_$httpBackend_) {
+    $httpBackend = _$httpBackend_;
+    $httpBackend.expectGET('/cards').
+        respond([{title:'mock'}]);
+}));
+it('my tests', function() {
+    $httpBackend.flush();
+    // add your code
+});
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>Unit test :: Filter</h2>
+                    <pre><code>
+var gravatar;
+beforeEach(inject(function(gravatarFilter) {
+    gravatar = gravatarFilter;
+}));
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>Unit test :: Directive</h2>
+                    <pre><code>
+var $scope, $compile;
+beforeEach(module('html/card.html'));
+beforeEach(inject(function (_$rootScope_, _$compile_) {
+        $scope = _$rootScope_;
+        $compile = _$compile_;
+    }));
+//......
+var compileDirective = function (markup, scope) {
+    var el = $compile(markup)(scope);
+    scope.$digest();
+    return el;
+};
+//......
+it('toggle class when card.dragging change', function(){
+    var element;
+    $scope.card = {'dragging' : true};
+    element = compileDirective('<card></card>', $scope);
+});
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>E2E test :: Scenario</h2>
+                    <p>
+                        <a href="http://docs.angularjs.org/guide/dev_guide.e2e-testing">dev_guide.e2e-testing</a>
+                    </p>
+                    <pre><code>
+beforeEach(function() {
+    browser().navigateTo('index.html');
+});
+                    </code></pre>
+                </section>
+
+			</div>
 		</div>
 
 		<script src="lib/js/head.min.js"></script>

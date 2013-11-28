@@ -47,12 +47,12 @@ function getCard(id) {
     return cardMatch;
 }
 
-app.get('/cards', function(req, res) {
+app.get('/api/cards', function(req, res) {
     res.write(JSON.stringify(cards));
     res.end();
 });
 
-app.get('/cards/:id', function(req, res, next) {
+app.get('/api/cards/:id', function(req, res, next) {
     var card = getIssue(req.params.id);
     if (card) {
         res.write(JSON.stringify(card));
@@ -62,13 +62,13 @@ app.get('/cards/:id', function(req, res, next) {
     }
 });
 
-app.post('/cards', function(req, res) {
+app.post('/api/cards', function(req, res) {
     cards.push(req.body);
     res.write(req.body);
     res.end();
 });
 
-app.delete('/cards/:id', function(req, res, next) {
+app.delete('/api/cards/:id', function(req, res, next) {
     var card = getCard(req.params.id);
     if (card) {
         cards.splice(cards.indexOf(card), 1);

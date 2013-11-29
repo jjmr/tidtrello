@@ -1,11 +1,12 @@
-<section class="cards" 
+<section class="cards"
     ng-controller="CardsController"
-    ng-mousemove="mousemove($event)" 
+    ng-mousemove="mousemove($event)"
     ng-mouseup="mouseup()">
-    <section class="columns">
-        <section class="column" 
+    <section class="columns" >
+        <section class="column"
             ng-mouseup="columnMouseup(column)"
-            ng-repeat="column in columns">
+            ng-repeat="column in columns"
+            id="column-{{column.name}}">
             <h2>{{column.name}}</h2>
             <section class="column_cards">
                 <card ng-repeat="card in cards | filter : { cardStatus: column.name }">

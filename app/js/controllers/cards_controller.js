@@ -1,7 +1,7 @@
 angular.module('tidtrello')
     .controller('CardsController', ['Cards', '$scope', function(Cards, $scope) {
 
-        Cards.query(function(result) {            
+        Cards.query(function(result) {
             $scope.cards = result;
         });
 
@@ -13,7 +13,7 @@ angular.module('tidtrello')
         ];
 
         $scope.addCard = function(column) {
-            var newCard = new Cards({ 
+            var newCard = new Cards({
                 editing: true,
                 severity: 'critical',
                 cardStatus: column.name
@@ -52,8 +52,8 @@ angular.module('tidtrello')
 
         $scope.columnMouseup = function(column) {
             if ($scope.draggingCard) {
-                $scope.draggingCard.cardStatus = column.name;   
+                $scope.draggingCard.cardStatus = column.name;
                 //$scope.draggingCard.$save();
-            }  
+            }
         };
     }]);
